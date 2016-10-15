@@ -1,4 +1,4 @@
--- exercse two
+-- exercise two
 
 
 import Data.Char
