@@ -1,5 +1,6 @@
 # hw02
 
+In this case we work with syntax trees. Data type:
 
 ```haskell
 data Expr a = Con a                     -- Constant value
@@ -8,9 +9,19 @@ data Expr a = Con a                     -- Constant value
             | Mul (Expr a) (Expr a)     -- Multiplication
             deriving ( Show, Read, Eq )
 ```
+The task is to program three functions for work with algebraic expressions: 
+
 ```haskell
 eval :: (Num a) => Expr a -> [(String, a)] -> Maybe a
 ```
+```haskell
+simplify01 :: Expr Integer -> Expr Integer
+```
+```haskell
+simplifyConstants :: Expr Integer -> Expr Integer,
+```
+
+
 You can see on the examples below how program work.
 
 ```haskell
