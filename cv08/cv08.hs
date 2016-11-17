@@ -64,9 +64,58 @@ treeMax :: (Ord a, Bounded a) => BinTree a -> a
 treeMax = treeFold (\v l r -> maximum [v,l,r]) minBound
 
 -- i) treeFlip
+treeFlip :: BinTree a -> BinTree a
+treeFlip = treeFold (\v l r -> Node v r l) Empty
 
 -- j) treeId
+treeId :: BinTree a -> BinTree a
+treeId = treeFold (\v l r -> Node v l r) Empty
+treeId’ = treeFold Node Empty
 
 -- k) rightMostBranch
 rightMostBranch :: BinTree a -> [a]
 rightMostBranch = treeFold (\v l r -> v:r) []
+
+-- l) 
+treeRoot :: BinTree a -> a
+treeRoot = treeFold (\v l r -> v) undefined
+treeRoot’ = treeFold (const . const) undefined
+
+-- m) 
+treeNull :: BinTree a -> Bool
+treeNull = treeFold (\v l r -> False) True
+
+-- n) 
+leavesCount :: BinTree a -> Int
+leavesCount = treeFold (\v l r -> if l + r == 0 then 1 else l + r) 0
+
+-- o) 
+leavesList :: BinTree a -> [a]
+leavesList = treeFold (\v l r -> if null l && null r then [v]
+                                                     else l ++ r) []
+
+-- p) 
+treeMap :: (a -> b) -> BinTree a -> BinTree b
+treeMap f = treeFold (\v l r -> Node (f v) l r) Empty
+treeMap’ f = treeFold (\v -> Node (f v)) Empty
+treeMap’’ f = treeFold (Node . f) Empty
+
+-- q) 
+treeAny :: (a -> Bool) -> BinTree a -> Bool
+treeAny p = treeFold (\v l r -> p v || l || r) False
+treeAny’ p = treeFold (\v l r -> or [p v, l, r]) False
+
+-- r) 
+treePair :: Eq a => BinTree (a,a) -> Bool
+treePair = treeFold (\(x,y) l r -> x == y && l && r) True
+
+-- s) 
+subtreeSums :: Num a => BinTree a -> BinTree a
+subtreeSums = treeFold (\v l r -> Node (v + root l + root r) l r) Empty
+                where root (Node v l r) = v
+                      root Empty = 0
+
+-- t) 
+findPredicates :: a -> BinTree (Int, a -> Bool) -> [Int]
+findPredicates x = treeFold (\(n,v) l r -> if v x then l ++ [n] ++ r
+                                                  else l ++ r) []
