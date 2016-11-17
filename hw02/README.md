@@ -14,13 +14,14 @@ The task is to program three functions for work with algebraic expressions:
 ```haskell
 eval :: (Num a) => Expr a -> [(String, a)] -> Maybe a
 ```
+
 ```haskell
 simplify01 :: Expr Integer -> Expr Integer
 ```
+
 ```haskell
 simplifyConstants :: Expr Integer -> Expr Integer,
 ```
-
 
 You can see on the examples below how program work.
 
