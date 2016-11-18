@@ -11,21 +11,21 @@ data Expr a = Con a                     -- Constant value
 ```
 The task is to program three functions for work with algebraic expressions: 
 
-```bash
+```haskell
 eval :: (Num a) => Expr a -> [(String, a)] -> Maybe a
 ```
 
-```bash
+```haskell
 simplify01 :: Expr Integer -> Expr Integer
 ```
 
-```bash
+```haskell
 simplifyConstants :: Expr Integer -> Expr Integer,
 ```
 
 You can see on the examples below how program work.
 
-```haskell
+```bash
 > eval (Add (Con 42) (Mul (Var "a") (Var "b"))) [("a", 2), ("b", 3)]
 Just 48
 > eval (Add (Con 42) (Mul (Var "a") (Var "b"))) [("a", 2)]
