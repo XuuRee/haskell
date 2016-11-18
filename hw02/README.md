@@ -25,7 +25,7 @@ simplifyConstants :: Expr Integer -> Expr Integer,
 
 You can see on the examples below how program work.
 
-```bash
+```haskell
 > eval (Add (Con 42) (Mul (Var "a") (Var "b"))) [("a", 2), ("b", 3)]
 Just 48
 > eval (Add (Con 42) (Mul (Var "a") (Var "b"))) [("a", 2)]
