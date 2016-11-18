@@ -11,15 +11,15 @@ data Expr a = Con a                     -- Constant value
 ```
 The task is to program three functions for work with algebraic expressions: 
 
-```haskell
+```bash
 eval :: (Num a) => Expr a -> [(String, a)] -> Maybe a
 ```
 
-```haskell
+```bash
 simplify01 :: Expr Integer -> Expr Integer
 ```
 
-```haskell
+```bash
 simplifyConstants :: Expr Integer -> Expr Integer,
 ```
 
