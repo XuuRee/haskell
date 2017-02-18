@@ -31,20 +31,37 @@ roots a b c = if d < 0 then error "0" else (x, y)
                    e = - b / (2 * a)
 
 
+-- factorial
+factorial :: Integer -> Integer
+factorial 0 = 1
+factorial x = x * factorial (x - 1)
+
+
 -- power
 power :: Double -> Int -> Double
 _ `power` 0 = 1
-z `power` n = z * (z `power` (n-1))
+z `power` n = if n < 0 then error "negative!" else z * (z `power` (n-1))
 
 
--- power v.2
-power :: Double -> Int -> Double
-_ `power` 0 = 1
-z `power` n =if n< 0
-           then error "error!"
-           else z * (z `power` (n-1))
+-- dfct
+dfct :: Integer -> Integer
+dfct 0 = 1
+dfct 1 = 1
+dfct n = n * dfct (n - 2)
 
 
--- fibonacci
-fibonacci :: [Int]
-fibnacci = error "Not defined!"
+-- combinatorial
+combinatorial :: Integer -> Integer -> Integer
+combinatorial n k = div (factorial n)  ((factorial k) * (factorial(n - k)))
+
+
+-- digits
+digits :: Integer -> Integer
+digits 0 = 0
+digits n = (mod n 10) + digits (div n 10)
+
+-- mygcd
+mygcd :: Integer -> Integer -> Integer
+mygcd x y = if y == 0 then x
+                      else mygcd (min x y) ((max x y) `mod` (min x y))
+
